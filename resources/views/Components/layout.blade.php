@@ -26,9 +26,18 @@
                 <span class="text-lg font-bold">Scraper</span>
             </div>
             <div class="mt-6 flex flex-col space-y-2">
+                <div>{{ Auth::user()->email }}</div>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-red-600 hover:underline">Logi välja</button>
+                </form>  
+                @if (auth()->user()->role === 'admin')
+                    <!-- Admin-only HTML -->
+                    <x-nav-link  href="/users" :active="request()->is('/users')">Kasutajad</x-nav-link>
+                @endif
                 <x-nav-link  href="/companies" :active="request()->is('/companies')">Ettevõtted</x-nav-link>
                 <x-nav-link  href="/people" :active="request()->is('/people')">Inimesed</x-nav-link>
-                
+              
             </div>
             
             <!-- Filters -->
@@ -87,11 +96,12 @@
             </form>
             </div>
 
+            {{--
             <div class="mt-auto flex items-center space-x-3 border-t border-gray-700 pt-4">
                 <div>
                     <p class="text-sm font-medium">Viljar Norman</p>
                 </div>
-            </div>
+            </div>--}}
         </nav>
 
         <!-- Main content -->

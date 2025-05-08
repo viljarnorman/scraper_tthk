@@ -20,6 +20,10 @@
             </div>
 
             <div class="mt-6 flex flex-col space-y-2">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-red-600 hover:underline">Logi välja</button>
+                </form>                  
                 <x-nav-link href="/companies" :active="request()->is('/companies')">Ettevõtted</x-nav-link>
                 <x-nav-link href="/people" :active="request()->is('/people')">Inimesed</x-nav-link>
             </div>
